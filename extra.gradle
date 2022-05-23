@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "de.undercouch:gradle-download-task:5.1.0"
+    }
+}
+
+subprojects {
+    apply plugin: "de.undercouch.download"
+    //FIXME  here i want get subproject define ext session paras like : src & dest & password
+    task downloadFile(type: Download) {
+        group "downloadFile "
+        //FIXME  Could not find method getFileSrc()
+//        println "Show Task Go "+this.getFileSrc()
+        println "Show Task Go "+this.project.name //FIXME not subproject name !!!
+        src "https://services.gradle.org/distributions/gradle-7.4.2-bin.zip"
+//    println "Show File.createTempDir()"+File.createTempDir()
+        dest buildDir
+        println "Show done"
+    }
+}
+
+ 

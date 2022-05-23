@@ -1,0 +1,18 @@
+////TODO 2022 new way
+//pluginManagement {
+//    repositories {
+//        gradlePluginPortal()
+//        google()
+//        mavenCentral()
+//    }
+//}
+//dependencyResolutionManagement {
+//    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+//    repositories {
+//        google()
+//        mavenCentral()
+//    }
+//}
+rootProject.name = "gradle_download_task"
+include ':app'
+include ':java_style'

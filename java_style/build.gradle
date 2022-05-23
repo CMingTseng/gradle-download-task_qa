@@ -1,0 +1,9 @@
+apply plugin: 'java-library'
+
+ext {
+    password = 'Show_me_password'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+}
