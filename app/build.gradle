@@ -2,27 +2,28 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
 }
-/* TODO the below pass , now export to extra gradle file
-apply plugin: "de.undercouch.download"
 
-def getFileSrc() {
-    return "https://services.gradle.org/distributions/gradle-7.4.2-bin.zip"
-}
- */
-
-def getFileSrc() {
-    return "https://services.gradle.org/distributions/gradle-7.4.2-bin.zip"
+ext {
+    auth = "fewfwqfwqefqwef"
+    unzip_password = 'Show_me_password'
+    src_path = "https://services.gradle.org/distributions/"
+    file_name = 'gradle-7.4.2-bin.zip'
+    dest_path = buildDir.toString()
+    keyAlias = 'keyAlias'
+    keyPassword = 'keyPassword'
+    storePassword = 'storePassword'
 }
 
 android {
-    compileSdk 32
+    compileSdk 31
+    this.ext.auth = 'change me !!!!!'
     buildFeatures {
         viewBinding true
     }
     defaultConfig {
         applicationId "de.undercouch.download.example"
         minSdk 21
-        targetSdk 32
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -56,13 +57,3 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
-/* TODO the below pass
-task downloadFile(type: Download) {
-    group "downloadFile "
-    println "Show Task Go "
-    src getFileSrc()
-//    println "Show File.createTempDir()"+File.createTempDir()
-    dest buildDir
-    println "Show done"
-}
- */

@@ -2,26 +2,16 @@
 apply from: './extra.gradle'
 buildscript {
     ext {
-        agp_version = '4.2.1'
+        agp_version = '7.0.4'
         kotlin_version = '1.6.21'
     }
     repositories {
         mavenCentral()
         google()
-/* TODO the below pass , now export to extra gradle file
-
-       maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-*/
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$agp_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        /* TODO the below pass , now export to extra gradle file
-
-               classpath "de.undercouch:gradle-download-task:5.1.0"
-       */
     }
 }
 

@@ -9,18 +9,45 @@ buildscript {
     }
 }
 
-subprojects {
+subprojects { it->
     apply plugin: "de.undercouch.download"
-    //FIXME  here i want get subproject define ext session paras like : src & dest & password
-    task downloadFile(type: Download) {
-        group "downloadFile "
-        //FIXME  Could not find method getFileSrc()
-//        println "Show Task Go "+this.getFileSrc()
-        println "Show Task Go "+this.project.name //FIXME not subproject name !!!
-        src "https://services.gradle.org/distributions/gradle-7.4.2-bin.zip"
-//    println "Show File.createTempDir()"+File.createTempDir()
-        dest buildDir
-        println "Show done"
+    it.afterEvaluate{
+        task downloadFile(type: Download) {
+            group "downloadFile"
+            def auth =project.ext.get('auth')
+            def src_path =project.ext.get('src_path')
+            def file_name =project.ext.get('file_name')
+            def unzip_password =project.ext.get('unzip_password')
+            def dest_path =project.ext.get('dest_path')
+            def keyAlias =project.ext.get('keyAlias')
+            def keyPassword =project.ext.get('keyPassword')
+            def storePassword =project.ext.get('storePassword')
+            src  src_path+file_name
+            dest dest_path
+            println "Show done"
+        }
+
+        task downloadZipFile(type: Download) {
+            group "download_with_unZip"
+            def auth =project.ext.get('auth')
+            def src_path =project.ext.get('src_path')
+            def file_name =project.ext.get('file_name')
+            def unzip_password =project.ext.get('unzip_password')
+            def dest_path =project.ext.get('dest_path')
+            def keyAlias =project.ext.get('keyAlias')
+            def keyPassword =project.ext.get('keyPassword')
+            def storePassword =project.ext.get('storePassword')
+            src src_path + file_name
+            dest new File(buildDir, file_name)
+        }
+
+        task downloadAndUnzipFile(dependsOn: downloadZipFile, type: Copy) {
+            group "download_with_unZip"
+            from zipTree(downloadZipFile.dest)
+            into buildDir
+        }
+
+        defaultTasks 'downloadAndUnzipFile'
     }
 }
 

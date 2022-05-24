@@ -1,7 +1,14 @@
 apply plugin: 'java-library'
 
 ext {
-    password = 'Show_me_password'
+    auth = "fewfwqfwqefqwef"
+    unzip_password = 'Show_me_password'
+    src_path = "https://services.gradle.org/distributions/"
+    file_name = 'gradle-7.4.2-bin.zip'
+    dest_path = buildDir.toString()
+    keyAlias = 'keyAlias'
+    keyPassword = 'keyPassword'
+    storePassword = 'storePassword'
 }
 
 dependencies {
